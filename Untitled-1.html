@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Valentine</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            overflow: hidden;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            flex-direction: column;
+        }
+        .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            font-size: 3em;
+            animation: glow 1.5s infinite alternate;
+        }
+        p {
+            font-size: 1.5em;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px white; }
+            to { text-shadow: 0 0 20px yellow; }
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: pink;
+            transform: rotate(-45deg);
+            animation: float 5s infinite ease-in-out;
+        }
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: pink;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-100px) scale(1.5); opacity: 0.7; }
+            100% { transform: translateY(-200px) scale(1); opacity: 0; }
+        }
+        .gift-box {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(to bottom, #ff0000, #cc0000);
+            position: relative;
+            cursor: pointer;
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(255, 0, 0, 0.5);
+        }
+        .gift-box::before {
+            content: "";
+            width: 120px;
+            height: 25px;
+            background: gold;
+            position: absolute;
+            top: -10px;
+            left: 0;
+            border-radius: 5px;
+        }
+        .ribbon {
+            position: absolute;
+            width: 20px;
+            height: 120px;
+            background: gold;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+        }
+        .hidden-image {
+            display: none;
+            margin-top: 20px;
+            width: 200px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy Valentine, Linh yêu ❤️</h1>
+        <p>Chúc em ngày Valentine tràn đầy yêu thương và hạnh phúc! Yêu em nhiều 💖</p>
+        <div class="gift-box" onclick="openGift()">
+            <div class="ribbon"></div>
+        </div>
+        <img id="giftImage" class="hidden-image" src="01.jpg" alt="Món quà bất ngờ">
+    </div>
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            document.body.appendChild(heart);
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.top = Math.random() * 100 + "vh";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 100);
+
+        function openGift() {
+            document.querySelector('.gift-box').classList.add('opened');
+            document.getElementById('giftImage').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
